@@ -13,7 +13,7 @@
   return NO;
 }
 
-// this method isn't "exposed" in the .h file. What does this mean?
+// this method isn't "exposed" in the .h file.
 - (void)anotherMethod {
   
 }

@@ -58,9 +58,9 @@
     NSString *result = [item fly];
     NSLog(@"%d: %@", __LINE__, result);
   }
-  NSString *result1 = [self executeFlyableObject:rubber]; // ==> can't fly worth beans
+  NSString *result1 = [self executeFlyableObject: rubber]; // ==> can't fly worth beans
   XCTAssert([result1 isEqualToString:@"can't fly worth beans"]);
-  NSString *result2 = [self executeFlyableObject:duck]; // ==> flyin high!
+  NSString *result2 = [self executeFlyableObject: duck]; // ==> flyin high!
   XCTAssert([result2 isEqualToString:@"flyin high!"]);
 }
 

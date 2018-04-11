@@ -1,58 +1,60 @@
-//
-//  ProtocolTests.m
-//  W1D5
-//
-//  Created by steve on 2017-03-09.
-//  Copyright © 2017 steve. All rights reserved.
-//
+  //
+  //  ProtocolTests.m
+  //  W1D5
+  //
+  //  Created by steve on 2017-03-09.
+  //  Copyright © 2017 steve. All rights reserved.
+  //
 
 #import <XCTest/XCTest.h>
 
 #pragma mark - Protocol
 
-// the protocol could be defined in a separate file and imported instead
-//#import "AnotherProtocol.h"
+  // NOTE: protocols can be defined in a separate file and imported instead. When would you do this?
+
+  //#import "AnotherProtocol.h"
 
 
-// Protocols can inherit from other protocols
+  // Protocols can inherit from other protocols
+
 @protocol MyProtocol<NSObject>
 - (void)putYourMethodsHere;
 @end
 
-// Optional/required
-
+  // Optional/required
+  // Protocols support multiple inheritance
 @protocol AnotherProtocol<MyProtocol>
 
-// @required is default and this method is inherited from <MyProtocol> so no need to redeclare it
-// - (void)putYourMethodsHere;
-// optional
+  // @required is default and this method is inherited from <MyProtocol> so no need to redeclare its method
+  // - (void)putYourMethodsHere;
 
 @optional
 - (void)optionalMethod;
-// use @required to switch back
+  // use @required to switch back
 
 @required
 - (NSString*)requiredAgain;
+
 @end
 
 
 #pragma mark - Class
-// Conforming To A Protocol
+  // Conforming To A Protocol
 
 @interface MyClass:NSObject<AnotherProtocol>
-// don't put the signatures in the header
+  // don't put the signatures in the header
 @end
 
 @implementation MyClass
 
-// required
+  // required
 - (NSString*)requiredAgain {
   return @"Some result";
 }
 
-// required
+  // required
 - (void)putYourMethodsHere {
-  // do stuff
+    // do stuff
 }
 @end
 
@@ -63,14 +65,19 @@
 @end
 @implementation ProtocolTests
 
-
-// Testing protocol conformance
-- (void)testProtocol {
+- (void)testProtocolConformance {
   BOOL conforms = [MyClass conformsToProtocol:@protocol(AnotherProtocol)];
   XCTAssertTrue(conforms);
+}
+
+- (void)testInstanceThatDoesNotConformToOptionalProtocol {
   MyClass *myClass = [MyClass new];
-  BOOL responds = [myClass respondsToSelector:@selector(optionalMethod)];
-  XCTAssertFalse(responds);
+  BOOL conforms = [myClass respondsToSelector:@selector(optionalMethod)];
+  XCTAssertFalse(conforms);
+}
+
+- (void)test {
+  MyClass *myClass = [MyClass new];
   NSString *result = [myClass requiredAgain];
   XCTAssertTrue([result isEqualToString:@"Some result"]);
 }
