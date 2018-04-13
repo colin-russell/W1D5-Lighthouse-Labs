@@ -9,6 +9,7 @@
 #import <XCTest/XCTest.h>
 #import "Person.h"
 
+// always put properties in the implementation file not the header file
 @interface ClassExtension : XCTestCase // this interface is not visible outside of this object since it's not in the header file
 // stuff here not visible outside
 @end
