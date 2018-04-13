@@ -9,6 +9,7 @@
 #import <XCTest/XCTest.h>
 #import "UnfriendlyGreetingDecider.h"
 #import "FriendlyGreetingDecider.h"
+// don't have to import greeter since the other imports already do
 
 @interface GreeterDelegationExampleTests : XCTestCase
 @property (nonatomic, strong) Greeter *greeter;

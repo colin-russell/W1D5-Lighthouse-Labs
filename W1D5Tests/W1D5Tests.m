@@ -96,7 +96,7 @@
     // adding it to a button
   UIButton *button = [[UIButton alloc] initWithFrame:CGRectZero];
   [button addTarget: self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
-  [self performSelectorOnMainThread:@selector(buttonTapped:) withObject: self waitUntilDone: YES];
+  [self performSelectorOnMainThread:@selector(buttonTapped:) withObject: button waitUntilDone: YES];
   XCTAssertTrue(self.wasCalled);
   
 }
@@ -112,9 +112,9 @@
   
   MyObject *myObject = [MyObject new];
   
-    //  SEL mySelector = @selector(myOptionalMethod);
+    SEL mySelector = @selector(myOptionalMethod);
   
-  BOOL respondsToSelector = [myObject respondsToSelector:@selector(myOptionalMethod)];
+  BOOL respondsToSelector = [myObject respondsToSelector:mySelector];
   XCTAssertTrue(respondsToSelector);
   
     // you can conditionally send it the message (calling an optional method that wasn't implemented causes a crash)
